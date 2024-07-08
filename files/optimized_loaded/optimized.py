@@ -40,7 +40,7 @@ def knapsack(actions, max_budget):
 
 
 def main():
-    actions = load_actions("dataset2_Python+P7.csv")
+    actions = load_actions("data/dataset1_Python+P7.csv")
     max_profit, selected_items, total_budget_used, elapsed_time = knapsack(actions, 500)
     print("Selected actions:")
     for item in selected_items:
