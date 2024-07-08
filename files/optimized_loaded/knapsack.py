@@ -1,16 +1,4 @@
-import pandas as pd
 import time
-
-
-def load_actions(filename):
-    data = pd.read_csv(filename)
-    data.columns = ['Actions', 'Cost', 'Profit']
-    data['Cost'] = pd.to_numeric(data['Cost'], errors='coerce').abs()
-    data['Profit'] = pd.to_numeric(data['Profit'], errors='coerce')
-    data.dropna(inplace=True)
-    # Filtrer les actions avec un coût strictement positif
-    data = data[data['Cost'] > 0.001]  # Augmenter légèrement le seuil pour exclure les coûts extrêmement bas
-    return data
 
 
 def knapsack(actions, max_budget):
@@ -37,18 +25,3 @@ def knapsack(actions, max_budget):
     # Trouver le meilleur budget utilisé qui reste sous le maximum
     best_budget = max((i for i in range(max_budget + 1) if budget_used[i] <= max_budget), key=lambda x: dp[x])
     return dp[best_budget], item_selection[best_budget], budget_used[best_budget], elapsed_time
-
-
-def main():
-    actions = load_actions("data/dataset1_Python+P7.csv")
-    max_profit, selected_items, total_budget_used, elapsed_time = knapsack(actions, 500)
-    print("Selected actions:")
-    for item in selected_items:
-        print(f"Action: {item[0]}, Cost: {item[1]:.3f}€, Expected Profit: {item[2]:.2f}€")
-    print(f"Total Profit: {max_profit:.2f}€")
-    print(f"Total Budget Used: {total_budget_used:.2f}€")
-    print(f"Temps d'exécution : {elapsed_time:.2f} sec")
-
-
-if __name__ == "__main__":
-    main()
