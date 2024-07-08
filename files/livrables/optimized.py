@@ -24,6 +24,7 @@ actions = [
     {"name": "Action-20", "cost": 114, "profit": 18},
 ]
 
+
 def knapsack(actions, max_budget):
     start_time = time.perf_counter()
     dp = [0 for _ in range(max_budget + 1)]
@@ -33,7 +34,7 @@ def knapsack(actions, max_budget):
     for i in range(len(actions)):
         cost = actions[i]['cost']
         if cost < 0.01:  # Exclure les coûts infimes pour des raisons pratiques
-            continue 
+            continue
         profit = cost * (actions[i]['profit'] / 100)
         # Parcourir de l'arrière pour éviter de revisiter la même action
         for w in range(max_budget, int(cost - 1), -1):
@@ -49,6 +50,7 @@ def knapsack(actions, max_budget):
     best_budget = max((i for i in range(max_budget + 1) if budget_used[i] <= max_budget), key=lambda x: dp[x])
     return dp[best_budget], item_selection[best_budget], budget_used[best_budget], elapsed_time
 
+
 def main():
     max_profit, selected_items, total_budget_used, elapsed_time = knapsack(actions, 500)
     print("Selected actions:")
@@ -58,6 +60,6 @@ def main():
     print(f"Total Budget Used: {total_budget_used:.2f}€")
     print(f"Temps d'exécution : {elapsed_time:.4f} sec")
 
+
 if __name__ == "__main__":
     main()
- 

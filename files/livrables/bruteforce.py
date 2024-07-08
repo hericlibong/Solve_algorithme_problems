@@ -25,14 +25,19 @@ actions = [
     {"name": "Action-20", "cost": 114, "profit": 18},
 ]
 
+
 # Fonction pour calculer le profit
 def calculate_profit(cost, percentage):
     """Calcule le profit à partir du coût et du pourcentage de profit."""
     return round(cost * (percentage / 100), 2)
 
+
 # Trouver le meilleur investissement
 def find_best_investment(actions):
-    """Trouve la meilleure combinaison d'investissement en respectant une contrainte budgétaire, en utilisant une force brute."""
+    """
+    Trouve la meilleure combinaison d'investissement en respectant
+    une contrainte budgétaire, en utilisant une force brute.
+    """
     start_time = time.time()
     best_combination = None
     max_profit = 0
@@ -53,16 +58,21 @@ def find_best_investment(actions):
     if best_combination:
         print("Meilleure combinaison à acheter :")
         for action in best_combination:
-            print(f"{action['name']} : Coût = {action['cost']}, Profit = {calculate_profit(action['cost'], action['profit'])} euros")
+            print(f"{action['name']} : "
+                  f"Coût = {action['cost']}, "
+                  f"Profit = {calculate_profit(action['cost'], action['profit'])} euros")
+
         print(f"Profit total : {max_profit} euros")
         print(f"Coût total : {min_cost} euros")
     else:
         print("Aucune combinaison valide trouvée dans le budget.")
     print(f"Temps d'exécution : {elapsed_time:.2f} secondes")
 
+
 # Fonction principale
 def main():
     find_best_investment(actions)
+
 
 if __name__ == "__main__":
     main()
