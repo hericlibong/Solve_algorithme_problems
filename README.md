@@ -1,4 +1,4 @@
-# Résolvez des problèmes en utilisant des algorithmes en Python
+# Solve Algo Problem Using Python
 
 
 test
